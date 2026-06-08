@@ -1,0 +1,37 @@
+# данные с Kaggle не храним в репозитории
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# сохранённые модели и предсказания
+models/*
+!models/.gitkeep
+submissions/*
+!submissions/.gitkeep
+
+# виртуальное окружение
+venv/
+.venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# секреты / токены Kaggle
+kaggle.json
+.env
+*.token
+
+# системное
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# локальные конфиги инструментов
+.mcp.json
+.claude/
