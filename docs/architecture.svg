@@ -1,0 +1,67 @@
+<svg viewBox="0 0 760 640" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <title>Архитектура ML-системы прогнозирования цен на недвижимость</title>
+  <desc>Пайплайн из трёх этапов: данные, подготовка данных, модель и предсказание.</desc>
+  <rect x="0" y="0" width="760" height="640" fill="#ffffff"/>
+  <defs>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#6b7280"/>
+    </marker>
+  </defs>
+  <style>
+    .box{fill:#ffffff;stroke:#d8dce2;stroke-width:1.5;}
+    .title{fill:#1a1a1a;font-size:15px;font-weight:600;}
+    .sub{fill:#6b7280;font-size:12px;}
+    .phase{fill:#6b7280;font-size:12px;font-weight:700;letter-spacing:1px;}
+    .accent{fill:#2563eb;}
+    .flow{stroke:#9aa1ab;stroke-width:1.6;fill:none;}
+  </style>
+
+  <text x="30" y="44" class="phase">ДАННЫЕ</text>
+  <line x1="30" y1="54" x2="730" y2="54" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="240" y="68" width="280" height="62" rx="10" class="box"/>
+  <rect x="240" y="68" width="5" height="62" rx="2.5" class="accent"/>
+  <text x="262" y="94" class="title">Датасет Kaggle</text>
+  <text x="262" y="114" class="sub">train.csv, test.csv · 79 признаков + цена</text>
+
+  <text x="30" y="174" class="phase">ПОДГОТОВКА ДАННЫХ</text>
+  <line x1="30" y1="184" x2="730" y2="184" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="240" y="198" width="280" height="60" rx="10" class="box"/>
+  <rect x="240" y="198" width="5" height="60" rx="2.5" class="accent"/>
+  <text x="262" y="223" class="title">Загрузка данных</text>
+  <text x="262" y="242" class="sub">pandas · data_prep.py</text>
+
+  <rect x="240" y="278" width="280" height="60" rx="10" class="box"/>
+  <rect x="240" y="278" width="5" height="60" rx="2.5" class="accent"/>
+  <text x="262" y="303" class="title">Разведочный анализ (EDA)</text>
+  <text x="262" y="322" class="sub">пропуски, корреляции, выбросы</text>
+
+  <rect x="240" y="358" width="280" height="60" rx="10" class="box"/>
+  <rect x="240" y="358" width="5" height="60" rx="2.5" class="accent"/>
+  <text x="262" y="383" class="title">Очистка и признаки</text>
+  <text x="262" y="402" class="sub">кодирование, масштаб · features.py</text>
+
+  <text x="30" y="454" class="phase">МОДЕЛЬ И РЕЗУЛЬТАТ</text>
+  <line x1="30" y1="464" x2="730" y2="464" stroke="#e5e7eb" stroke-width="1"/>
+  <rect x="240" y="478" width="280" height="60" rx="10" class="box"/>
+  <rect x="240" y="478" width="5" height="60" rx="2.5" class="accent"/>
+  <text x="262" y="503" class="title">Обучение модели</text>
+  <text x="262" y="522" class="sub">регрессия · train.py</text>
+
+  <rect x="40" y="558" width="240" height="60" rx="10" class="box"/>
+  <rect x="40" y="558" width="5" height="60" rx="2.5" class="accent"/>
+  <text x="62" y="583" class="title">Оценка качества</text>
+  <text x="62" y="602" class="sub">RMSE · кросс-валидация</text>
+
+  <rect x="480" y="558" width="240" height="60" rx="10" class="box"/>
+  <rect x="480" y="558" width="5" height="60" rx="2.5" class="accent"/>
+  <text x="502" y="583" class="title">Предсказание цен</text>
+  <text x="502" y="602" class="sub">predict.py → submission.csv</text>
+
+  <path class="flow" marker-end="url(#arr)" d="M380,130 L380,196"/>
+  <path class="flow" marker-end="url(#arr)" d="M380,258 L380,276"/>
+  <path class="flow" marker-end="url(#arr)" d="M380,338 L380,356"/>
+  <path class="flow" marker-end="url(#arr)" d="M380,418 L380,476"/>
+  <path class="flow" marker-end="url(#arr)" d="M280,508 L162,508 L162,556"/>
+  <path class="flow" marker-end="url(#arr)" d="M520,508 L600,508 L600,556"/>
+  <path class="flow" stroke-dasharray="5 4" marker-end="url(#arr)" d="M160,558 L160,388 L238,388"/>
+</svg>

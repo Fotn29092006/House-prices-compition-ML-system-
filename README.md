@@ -40,6 +40,24 @@
 пропуски (`PoolQC`, `Alley`, `FireplaceQu` и др.), их нужно обработать.
 Полное описание каждого поля — в `data/data_description.txt`.
 
+## Архитектура
+
+Данные проходят путь от исходного CSV-файла до готового предсказания цены.
+Каждый этап соответствует своему файлу в `src/`.
+
+```mermaid
+flowchart TD
+    A["Датасет Kaggle<br/>train.csv, test.csv · 79 признаков"] --> B["Загрузка данных<br/>pandas · data_prep.py"]
+    B --> C["Разведочный анализ (EDA)<br/>пропуски, корреляции, выбросы"]
+    C --> D["Очистка и признаки<br/>кодирование, масштаб · features.py"]
+    D --> E["Обучение модели<br/>регрессия · train.py"]
+    E --> F["Оценка качества<br/>RMSE · кросс-валидация"]
+    E --> G["Предсказание цен<br/>predict.py → submission.csv"]
+    F -. улучшаем признаки/модель .-> D
+```
+
+> Схема также доступна картинкой: [`docs/architecture.svg`](docs/architecture.svg).
+
 ## Структура проекта
 
 ```
@@ -55,6 +73,8 @@ house-prices-ml/
 │   ├── features.py     # признаки и препроцессинг
 │   ├── train.py        # обучение
 │   └── predict.py      # предсказание -> submission.csv
+├── docs/
+│   └── architecture.svg  # схема архитектуры
 ├── models/             # сохранённые модели
 ├── submissions/        # ответы для Kaggle
 ├── requirements.txt
