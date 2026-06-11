@@ -37,6 +37,8 @@ def main():
     # цену логарифмируем — метрика соревнования считается по log(цены)
     y = np.log1p(train[data_prep.TARGET])
     X = train.drop(columns=[data_prep.TARGET, data_prep.ID])
+    X = X[data_prep.SELECTED_FEATURES]  # используем только 15 признаков
+    print(f'Используется признаков: {X.shape[1]}')
 
     best_name, best_score, best_pipe = None, np.inf, None
     for name, model in get_models().items():

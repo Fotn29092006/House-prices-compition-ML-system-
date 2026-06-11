@@ -19,6 +19,7 @@ def main():
 
     ids = test[data_prep.ID]
     X_test = test.drop(columns=[data_prep.ID])
+    X_test = X_test[data_prep.SELECTED_FEATURES]  # те же 15 признаков
 
     # модель обучена на log(цены) — возвращаем обратно через expm1
     pred = np.expm1(pipe.predict(X_test))

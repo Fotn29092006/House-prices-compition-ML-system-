@@ -21,7 +21,7 @@
   <rect x="240" y="68" width="280" height="62" rx="10" class="box"/>
   <rect x="240" y="68" width="5" height="62" rx="2.5" class="accent"/>
   <text x="262" y="94" class="title">Датасет Kaggle</text>
-  <text x="262" y="114" class="sub">train.csv, test.csv · 79 признаков + цена</text>
+  <text x="262" y="114" class="sub">train.csv, test.csv · 15 признаков</text>
 
   <text x="30" y="174" class="phase">ПОДГОТОВКА ДАННЫХ</text>
   <line x1="30" y1="184" x2="730" y2="184" stroke="#e5e7eb" stroke-width="1"/>
@@ -37,7 +37,7 @@
 
   <rect x="240" y="358" width="280" height="60" rx="10" class="box"/>
   <rect x="240" y="358" width="5" height="60" rx="2.5" class="accent"/>
-  <text x="262" y="383" class="title">Очистка и признаки</text>
+  <text x="262" y="383" class="title">Отбор признаков (15)</text>
   <text x="262" y="402" class="sub">кодирование, масштаб · features.py</text>
 
   <text x="30" y="454" class="phase">МОДЕЛЬ И РЕЗУЛЬТАТ</text>

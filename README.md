@@ -18,27 +18,23 @@
 Используется датасет Ames Housing — продажи жилых домов в городе Эймс,
 штат Айова, за 2006–2010 годы.
 
-- `train.csv` — обучающая выборка, 1460 домов, 79 признаков + цена `SalePrice`
+- `train.csv` — обучающая выборка, 1460 домов, 15 признаков + цена `SalePrice`
 - `test.csv` — тестовая выборка, 1459 домов, те же признаки без цены
 - `data_description.txt` — описание всех признаков
 - `sample_submission.csv` — пример файла с ответами
 
 Целевая переменная — `SalePrice` (цена продажи).
 
-Признаки можно разбить на группы:
+## Отбор признаков
 
-- площадь и размеры — `LotArea`, `GrLivArea`, `TotalBsmtSF`, `GarageArea`
-- качество и состояние — `OverallQual`, `OverallCond`, `KitchenQual`, `ExterQual`
-- годы — `YearBuilt`, `YearRemodAdd`, `GarageYrBlt`
-- комнаты — `BedroomAbvGr`, `FullBath`, `HalfBath`, `TotRmsAbvGrd`
-- расположение — `Neighborhood`, `MSZoning`, `Condition1`
-- тип дома — `BldgType`, `HouseStyle`, `MSSubClass`
-- прочее — `GarageCars`, `Fireplaces`, `PoolArea`, `Fence`, `SaleCondition`
+Для модели мы используем **15 признаков**, которые сильнее всего связаны
+с ценой (видно по корреляциям в ноутбуке EDA). Они дают понятную и простую
+для объяснения модель.
 
-Признаки бывают числовые (площади, годы, количество), категориальные (район,
-тип дома) и порядковые (оценки качества Ex/Gd/TA/Fa/Po). В данных есть
-пропуски (`PoolQC`, `Alley`, `FireplaceQu` и др.), их нужно обработать.
-Полное описание каждого поля — в `data/data_description.txt`.
+Отобранные признаки: `OverallQual`, `GrLivArea`, `GarageCars`, `GarageArea`,
+`TotalBsmtSF`, `1stFlrSF`, `FullBath`, `TotRmsAbvGrd`, `YearBuilt`,
+`YearRemodAdd`, `Fireplaces`, `LotArea`, `Neighborhood`, `KitchenQual`,
+`ExterQual`. Список задаётся в `src/data_prep.py` (`SELECTED_FEATURES`).
 
 ## Архитектура
 
@@ -47,9 +43,9 @@
 
 ```mermaid
 flowchart TD
-    A["Датасет Kaggle<br/>train.csv, test.csv · 79 признаков"] --> B["Загрузка данных<br/>pandas · data_prep.py"]
+    A["Датасет Kaggle<br/>train.csv, test.csv · 15 признаков"] --> B["Загрузка данных<br/>pandas · data_prep.py"]
     B --> C["Разведочный анализ (EDA)<br/>пропуски, корреляции, выбросы"]
-    C --> D["Очистка и признаки<br/>кодирование, масштаб · features.py"]
+    C --> D["Отбор и очистка признаков<br/>15 признаков · features.py"]
     D --> E["Обучение модели<br/>регрессия · train.py"]
     E --> F["Оценка качества<br/>RMSE · кросс-валидация"]
     E --> G["Предсказание цен<br/>predict.py → submission.csv"]
@@ -69,7 +65,7 @@ house-prices-ml/
 │   ├── 01_eda.ipynb    # разведочный анализ
 │   └── 02_modeling.ipynb
 ├── src/
-│   ├── data_prep.py    # загрузка и очистка
+│   ├── data_prep.py    # загрузка, очистка, список 15 признаков
 │   ├── features.py     # признаки и препроцессинг
 │   ├── train.py        # обучение
 │   └── predict.py      # предсказание -> submission.csv
@@ -91,7 +87,7 @@ python -m venv venv
 source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 
-# скачать данные с Kaggle и положить в data/raw/
+# скачать данные с Kaggle и положить в data/raw/ (или home-data-for-ml-course/)
 python src/train.py             # обучение
 python src/predict.py           # предсказание -> submissions/submission.csv
 ```
@@ -100,7 +96,7 @@ python src/predict.py           # предсказание -> submissions/submis
 
 1. EDA — распределения, пропуски, выбросы, корреляции с ценой
 2. Препроцессинг — заполнение пропусков, кодирование категорий, масштабирование
-3. Новые признаки — например `TotalSF`, возраст дома, общее число санузлов
+3. Отбор 15 признаков, сильнее всего связанных с ценой
 4. Модели — линейная регрессия как базовая, затем Random Forest и градиентный бустинг
 5. Валидация — кросс-валидация, RMSE на логарифме цены
 6. Submission — собрать `submission.csv` и отправить на Kaggle
