@@ -32,7 +32,7 @@ TARGET = "SalePrice"
 ID = "Id"
 
 # для этих признаков пропуск означает "такого элемента в доме нет"
-# (нет подвала, гаража, бассейна...), а не отсутствие данных — ставим "None"
+# (нет подвала, гаража, бассейна...), а не отсутствие данных - ставим "None"
 NONE_COLS = [
     "Alley", "MasVnrType", "BsmtQual", "BsmtCond", "BsmtExposure",
     "BsmtFinType1", "BsmtFinType2", "FireplaceQu", "GarageType",

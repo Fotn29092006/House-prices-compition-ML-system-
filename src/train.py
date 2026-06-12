@@ -34,7 +34,7 @@ def main():
     train = data_prep.fill_missing(train)
     train = features.add_features(train)
 
-    # цену логарифмируем — метрика соревнования считается по log(цены)
+    # цену логарифмируем - метрика соревнования считается по log(цены)
     y = np.log1p(train[data_prep.TARGET])
     X = train.drop(columns=[data_prep.TARGET, data_prep.ID])
     X = X[data_prep.SELECTED_FEATURES]  # используем только 15 признаков

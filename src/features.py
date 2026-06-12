@@ -5,7 +5,7 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
 
-# порядковые оценки качества: чем выше — тем лучше
+# порядковые оценки качества: чем выше - тем лучше
 QUALITY_MAP = {"Ex": 5, "Gd": 4, "TA": 3, "Fa": 2, "Po": 1, "None": 0}
 QUALITY_COLS = [
     "ExterQual", "ExterCond", "BsmtQual", "BsmtCond", "HeatingQC",
@@ -56,8 +56,8 @@ def add_features(df):
 
 
 def build_preprocessor():
-    """Числовые признаки — импутация медианой и масштабирование,
-    категориальные — заполнение модой и one-hot кодирование."""
+    """Числовые признаки - импутация медианой и масштабирование,
+    категориальные - заполнение модой и one-hot кодирование."""
     numeric = Pipeline([
         ("impute", SimpleImputer(strategy="median")),
         ("scale", StandardScaler()),
